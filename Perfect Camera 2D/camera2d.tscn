@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6e86gj2tjv4d"]
+
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="1_2p0o0"]
+
+[node name="Camera" type="Camera2D"]
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("1_2p0o0")
