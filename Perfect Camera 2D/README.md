@@ -31,5 +31,5 @@ If you are in the Zoom mode, you can set a fixed zoom to the character by editin
 Last thing is debug mode, to show many data used for camera calculation, you can decide where to show em, other things to achieve your dream camera are drag, smoothing, 
 and the other Camera2D parameters.
 
-#### I might update the code later to add more functionalities & making it easier and maybe some debugging tools.
-#### If you are interested i will post it here, and if you need tips tricks to get something with it just ask.
+### I might update the code later to add more functionalities & making it easier and maybe some debugging tools.
+### If you are interested i will post it here, and if you need tips tricks to get something with it just ask.
