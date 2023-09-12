@@ -10,9 +10,8 @@ extends Camera2D
 @export var CameraShape: CollisionShape2D
 @export_enum("None", "Editor", "Game", "Both") var debug_mode: int = 0
 
-@onready var CameraZone: Vector2 = CameraShape.shape.size * camera_factor
-
 @onready var viewport_size: Vector2 = get_viewport_rect().size
+@onready var CameraZone: Vector2 = viewport_size
 @onready var ratio: Vector2 = viewport_size / CameraZone
 @onready var min_zoom: float = min(ratio.x, ratio.y)
 
@@ -22,6 +21,11 @@ var targets: Array
 var min_pos: Vector2
 var max_pos: Vector2
 var debug: bool
+
+func _ready():
+	if CameraShape:
+		CameraZone = CameraShape.shape.size
+	CameraZone *= camera_factor
 
 func move():
 	avg *= 0
@@ -47,7 +51,7 @@ func zooming():
 func _physics_process(delta):
 	debug = debug_mode == 3 or debug_mode == 2 and not Engine.is_editor_hint() or debug_mode == 1 and Engine.is_editor_hint()
 	targets = (targets_paths.filter(func f(x: NodePath) -> bool: return get_node_or_null(x) != null).map(func f(x: NodePath) -> Node: return get_node(x))) as Array[Node]
-	CameraZone = CameraShape.shape.size * camera_factor
+	CameraZone = (CameraShape.shape.size if CameraShape else viewport_size) * camera_factor
 	if targets.size() and mode != 1:
 		min_pos = targets[0].global_position
 		max_pos = targets[0].global_position
