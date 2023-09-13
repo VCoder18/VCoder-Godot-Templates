@@ -36,11 +36,7 @@ func move():
 	offset = avg.clamp((-CameraZone / 2 + viewport_size / zoom / 2), (CameraZone / 2 - viewport_size / zoom / 2))
 
 func zooming():
-	longest_dist = Vector2.ONE
-	var distance: Vector2
-	distance = abs(clamp_pos(min_pos - zoom_padding) - clamp_pos(max_pos + zoom_padding))
-	longest_dist.x = max(longest_dist.x, distance.x)
-	longest_dist.y = max(longest_dist.y, distance.y)
+	longest_dist = abs(clamp_pos(min_pos - zoom_padding) - clamp_pos(max_pos + zoom_padding))
 	if targets.size() > 1 and mode == 0:
 		zoom = viewport_size / longest_dist
 		zoom = Vector2.ONE * min(zoom.x, zoom.y)
