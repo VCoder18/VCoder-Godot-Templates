@@ -38,8 +38,11 @@ func move():
 func zooming():
 	longest_dist = abs(clamp_pos(min_pos - zoom_padding) - clamp_pos(max_pos + zoom_padding))
 	if targets.size() > 1 and mode == 0:
-		zoom = viewport_size / max(longest_dist, 1)
-		zoom = Vector2.ONE * min(zoom.x, zoom.y)
+		if longest_dist:
+			zoom = viewport_size / longest_dist
+			zoom = Vector2.ONE * min(zoom.x, zoom.y)
+		else:
+			zoom = Vector2.ONE * max_zoom
 	else:
 		zoom = solo_zoom * Vector2.ONE
 	zoom = zoom.clamp(Vector2.ONE * min_zoom, Vector2.ONE * max_zoom)
